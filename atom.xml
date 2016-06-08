@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>凯子哥的博客</title>
+  <subtitle>专注Android开发与技术分享，关注产品、营销与用户体验</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://kaizige.vip/"/>
+  <updated>2016-06-05T15:56:34.000Z</updated>
+  <id>http://kaizige.vip/</id>
+  
+  <author>
+    <name>赵凯强</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello</title>
+    <link href="http://kaizige.vip/2016/06/04/Hello/"/>
+    <id>http://kaizige.vip/2016/06/04/Hello/</id>
+    <published>2016-06-04T13:48:49.000Z</published>
+    <updated>2016-06-05T15:56:34.000Z</updated>
+    
+    <content type="html">&lt;p&gt;之前自己搭过一个个人博客，拼凑的前端页面无法直视，再加上后台的编辑器难用的一笔，最后让我没有一点点写博客的动力了…&lt;br&gt;然后我发现了hexo…简直是不懂前端又想做自己的博客的人的福利啊~&lt;br&gt;我的动力貌似能重启了~~&lt;br&gt;markdown也是初学阶段，还花一天时间找了七八个开源的博客系统，没一个满意的。当看到hexo时，突然觉得自己之前真是low的一笔啊,当然经过这个过程也是很锻炼人的……(强行安慰一下自己 :p)&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前自己搭过一个个人博客，拼凑的前端页面无法直视，再加上后台的编辑器难用的一笔，最后让我没有一点点写博客的动力了…&lt;br&gt;然后我发现了hexo…简直是不懂前端又想做自己的博客的人的福利啊~&lt;br&gt;我的动力貌似能重启了~~&lt;br&gt;markdown也是初学阶段，还花一天时间找了
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://kaizige.vip/tags/Android/"/>
+    
+  </entry>
+  
+</feed>
