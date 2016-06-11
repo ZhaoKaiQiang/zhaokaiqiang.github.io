@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kaizige.vip/"/>
-  <updated>2016-06-08T10:48:21.000Z</updated>
+  <updated>2016-06-11T14:19:00.000Z</updated>
   <id>http://kaizige.vip/</id>
   
   <author>
@@ -16,39 +16,87 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>ADB</title>
-    <link href="http://kaizige.vip/2016/06/08/ADB/"/>
-    <id>http://kaizige.vip/2016/06/08/ADB/</id>
-    <published>2016-06-08T10:48:21.000Z</published>
-    <updated>2016-06-08T10:48:21.000Z</updated>
+    <title>使用Hexo搭建免费的个人技术博客</title>
+    <link href="http://kaizige.vip/2016/06/10/how-to-build-up-yourself-hexo-blog/"/>
+    <id>http://kaizige.vip/2016/06/10/how-to-build-up-yourself-hexo-blog/</id>
+    <published>2016-06-10T15:23:09.000Z</published>
+    <updated>2016-06-11T14:19:00.000Z</updated>
     
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello</title>
-    <link href="http://kaizige.vip/2016/06/04/Hello/"/>
-    <id>http://kaizige.vip/2016/06/04/Hello/</id>
-    <published>2016-06-04T13:48:49.000Z</published>
-    <updated>2016-06-05T15:56:34.000Z</updated>
-    
-    <content type="html">&lt;p&gt;之前自己搭过一个个人博客，拼凑的前端页面无法直视，再加上后台的编辑器难用的一笔，最后让我没有一点点写博客的动力了…&lt;br&gt;然后我发现了hexo…简直是不懂前端又想做自己的博客的人的福利啊~&lt;br&gt;我的动力貌似能重启了~~&lt;br&gt;markdown也是初学阶段，还花一天时间找了七八个开源的博客系统，没一个满意的。当看到hexo时，突然觉得自己之前真是low的一笔啊,当然经过这个过程也是很锻炼人的……(强行安慰一下自己 :p)&lt;/p&gt;
+    <content type="html">&lt;p&gt;当初一起学习Android开发的朋友们，你们还好吗？在消失了半年的时间之后，我——凯子哥，又出现了~&lt;/p&gt;
+&lt;p&gt;首先要说声抱歉，前段时间因为刚转战到一个初创公司，作为核心的开发人员，工作时间一直维持在9106——早9晚10一周六天——的节奏，每天回到家已经是身心疲惫，博文更新的进度一度中断。最近总算是有了点改善，因此准备恢复技术博客的更新进度，但是毕竟是创业公司，更新的进度不敢保证，无论如何，是时候总结一下这段时间在技术上的成长了！&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;以前一直在CSDN发布文章，这次我准备恢复我的个人博客。为什么叫恢复呢？因为之前用Hexo+Github维护过一个技术博客，但是CSDN相对而言更容易维护一些，而且人气更旺一点，所以个人博客一直在搁置状态。但是，我已经被CSDN博客糟糕的用户体验和各种BUG折磨的失去了信心，留言板和评论的各种BUG在几年间还没有修复完全，因此这次就直接自己动手，丰衣足食吧！&lt;/p&gt;
+&lt;p&gt;当然，除了这个原因之外，还有一个很重要的因素，就是之前的文章关于Android的初级知识比较多，随着开发经验的增长，在新的博客里面，我想更多的分享一些更高级的开发知识和开发经验，也算是一个技术的分水岭，欢迎各位朋友指导与交流！&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hexo的搭建过程请参考官方文档：&lt;a href=&quot;https://hexo.io/zh-cn/docs/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://hexo.io/zh-cn/docs/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;遇到的一些常见问题请参考Github项目主页：&lt;a href=&quot;https://github.com/hexojs/hexo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/hexojs/hexo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;预览和更换博客Theme请参考&lt;a href=&quot;https://hexo.io/themes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://hexo.io/themes/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Maupassant主题介绍请参考：&lt;a href=&quot;https://www.haomwei.com/technology/maupassant-hexo.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.haomwei.com/technology/maupassant-hexo.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本博客使用的是Maupassant主题，简洁大方，在各个平台上的UI适配性都不错，感觉Maupassant主题&lt;a href=&quot;https://github.com/tufu9441/maupassant-hexo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;开发者&lt;/a&gt;的付出！&lt;/p&gt;
+&lt;p&gt;好了，下面介绍一下本博客搭建过程中遇到的一些问题和解决方案。&lt;/p&gt;
+&lt;h1 id=&quot;Hexo的目录结构&quot;&gt;&lt;a href=&quot;#Hexo的目录结构&quot; class=&quot;headerlink&quot; title=&quot;Hexo的目录结构&quot;&gt;&lt;/a&gt;Hexo的目录结构&lt;/h1&gt;&lt;p&gt;当你按照官方的指导文档把项目安装到本地之后，就可以看到如下的项目目录结构，熟悉每一个目录结构的功能有利于下面的功能扩展和BUG排查。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o8l7jwurv.bkt.clouddn.com/QQ20160611-0@2x.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;具体每个文件夹的用途在&lt;a href=&quot;https://hexo.io/zh-cn/docs/setup.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方文档&lt;/a&gt;中有详细的介绍，这里不再赘述。&lt;/p&gt;
+&lt;p&gt;需要注意的是，_config.yml是全局配置，每个Theme独有的特性设置请在themes文件夹里面对应的主题配置文件进行修改。&lt;/p&gt;
+&lt;p&gt;_config.yml采用的是YAML文件格式，数据采用key:value的格式，有一点需要注意的是，key和value之间必须有一个空格，否则会导致格式不正确。&lt;/p&gt;
+&lt;p&gt;关于各个目录文件的使用注意会在下面的内容中给出。&lt;/p&gt;
+&lt;h1 id=&quot;关于主题的设置&quot;&gt;&lt;a href=&quot;#关于主题的设置&quot; class=&quot;headerlink&quot; title=&quot;关于主题的设置&quot;&gt;&lt;/a&gt;关于主题的设置&lt;/h1&gt;&lt;p&gt;更换Hexo的主题非常简单，将项目clone到&lt;strong&gt;themes&lt;/strong&gt;文件夹，然后将根目录下_config.yml得theme切换为新的主题的名字即可。&lt;/p&gt;
+&lt;p&gt;除此之外，每种主题都可以自由的配置一些参数和特性，修改特定主题的属性时，需要修改主题所在文件夹下的配置文件&lt;strong&gt;_config.yml&lt;/strong&gt;，注意区别于根目录下的全局配置文件。&lt;/p&gt;
+&lt;h1 id=&quot;文章模板&quot;&gt;&lt;a href=&quot;#文章模板&quot; class=&quot;headerlink&quot; title=&quot;文章模板&quot;&gt;&lt;/a&gt;文章模板&lt;/h1&gt;&lt;p&gt;当使用hexo new生成新的文章文件的时候，会默认采用模板文章，在模板文件中，可以自定义Front-matter属性，进行自定义的配置。&lt;/p&gt;
+&lt;p&gt;我的默认模板如下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o8l7jwurv.bkt.clouddn.com/QQ20160611-1@2x.png&quot; width=&quot;400/&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h1&gt;&lt;p&gt;hexo自带的命令非常简洁，学习起来也很简单。&lt;/p&gt;
+&lt;p&gt;常用的命令就下面几个&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hexo new title 生成一篇名为“title”的新文章，采用默认的模板&lt;/li&gt;
+&lt;li&gt;hexo g 重新渲染Blog&lt;/li&gt;
+&lt;li&gt;hexo s 启动本地服务器，默认采用的网文地址是：&lt;a href=&quot;http://localhost:4000/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000/&lt;/a&gt;,可以用来本地测试&lt;/li&gt;
+&lt;li&gt;hexo d 将本地public目录下的文件内容提交到Github，具体的项目地址在_config.yml设置&lt;/li&gt;
+&lt;li&gt;hexo clean 清空本地的缓存文件db.json和已生成的静态文件public&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一般来说，一个正常的工作流是这样的：hexo new一篇模板文章，写作完成后，hexo g进行渲染，hexo s在本地试运行，本地测试没问题后，hexo d将生成的内容部署到Github对应的项目地址，完成文章的发表。&lt;/p&gt;
+&lt;h1 id=&quot;使用Maupassant主题过程中的坑&quot;&gt;&lt;a href=&quot;#使用Maupassant主题过程中的坑&quot; class=&quot;headerlink&quot; title=&quot;使用Maupassant主题过程中的坑&quot;&gt;&lt;/a&gt;使用Maupassant主题过程中的坑&lt;/h1&gt;&lt;p&gt;下面是在使用Maupassant主题时遇到的几个问题&lt;/p&gt;
+&lt;h2 id=&quot;开启了TOC不显示目录&quot;&gt;&lt;a href=&quot;#开启了TOC不显示目录&quot; class=&quot;headerlink&quot; title=&quot;开启了TOC不显示目录&quot;&gt;&lt;/a&gt;开启了TOC不显示目录&lt;/h2&gt;&lt;p&gt;在Maupassant主题中，可以通过toc来设置显示目录结构，这是我比较喜欢的Feature。但是只支持使用“===”和“—”作为标题等级的识别符，不支持使用“#”方式。&lt;/p&gt;
+&lt;h2 id=&quot;npm-install-hexo-renderer-sass出现问题&quot;&gt;&lt;a href=&quot;#npm-install-hexo-renderer-sass出现问题&quot; class=&quot;headerlink&quot; title=&quot;npm install hexo-renderer-sass出现问题&quot;&gt;&lt;/a&gt;npm install hexo-renderer-sass出现问题&lt;/h2&gt;&lt;p&gt;如果这一步出现问题，那么就会出现修改了主题以后，界面没有样式的问题，修复方法就是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;npm uninstall hexo-renderer-sass –save 将sass卸载&lt;/li&gt;
+&lt;li&gt;安装cpnm，具体安装方法自行搜索&lt;/li&gt;
+&lt;li&gt;使用cnpm install hexo-renderer-sass –save 重新安装saas即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;部署时CNAME文件被删除&quot;&gt;&lt;a href=&quot;#部署时CNAME文件被删除&quot; class=&quot;headerlink&quot; title=&quot;部署时CNAME文件被删除&quot;&gt;&lt;/a&gt;部署时CNAME文件被删除&lt;/h2&gt;&lt;p&gt;如果你想绑定个人域名的话，就需要完成CNAME解析，在项目的根目录放置CNAME文件，但是直接在Github项目的根目录添加文件，在下次更新的时候，会自定删除CNAME文件，因为每次public文件都是再次生成的，CNAME文件会丢失。&lt;/p&gt;
+&lt;p&gt;解决方案就是将CNAME文件放置在根目录source文件夹里面，在生成public文件的时候，hexo会自动将CNAME文件拷贝过去。&lt;/p&gt;
+&lt;h2 id=&quot;添加百度统计&quot;&gt;&lt;a href=&quot;#添加百度统计&quot; class=&quot;headerlink&quot; title=&quot;添加百度统计&quot;&gt;&lt;/a&gt;添加百度统计&lt;/h2&gt;&lt;p&gt;如果你想添加统计工具，观察每天博客的流量情况，那么就可以申请百度统计，把申请得到的id填写在themes/maupassant/_config.yml对应位置即可。&lt;/p&gt;
+&lt;h2 id=&quot;添加Disqus评论&quot;&gt;&lt;a href=&quot;#添加Disqus评论&quot; class=&quot;headerlink&quot; title=&quot;添加Disqus评论&quot;&gt;&lt;/a&gt;添加Disqus评论&lt;/h2&gt;&lt;p&gt;相对多说来说，我更喜欢Disqus，如果要使用Disqus，需要去官网申请开通。然后将开通时设置的user_name配置到themes/maupassant/_config.yml即可。开通地址请戳：&lt;a href=&quot;https://disqus.com/admin/create/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://disqus.com/admin/create/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;添加RSS订阅&quot;&gt;&lt;a href=&quot;#添加RSS订阅&quot; class=&quot;headerlink&quot; title=&quot;添加RSS订阅&quot;&gt;&lt;/a&gt;添加RSS订阅&lt;/h2&gt;&lt;p&gt;使用下面的代码可以为Blog添加RSS订阅&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install hexo-generator-feed --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;但是，如果遇到如下错误&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;FATAL (unknown path) [Line 7, Column 23]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  Error: Unable to call `the return value of (posts[&amp;quot;first&amp;quot;])[&amp;quot;updated&amp;quot;][&amp;quot;toISOStrin&amp;quot;]`, which is undefined or falsey&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;有可能造成这个问题的原因是你把source/_post下面的文章都都删了，所以在生成RSS的过程中就会报错，解决方案就是至少保证有一片文章，然后在使用上面的命令安装RSS组件&lt;/p&gt;
+&lt;h1 id=&quot;参考资料及版权声明&quot;&gt;&lt;a href=&quot;#参考资料及版权声明&quot; class=&quot;headerlink&quot; title=&quot;参考资料及版权声明&quot;&gt;&lt;/a&gt;参考资料及版权声明&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.rockcoding.com/2016/03/02/hexo/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;使用hexo时遇到的小坑&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.haomwei.com/technology/maupassant-hexo.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;大道至简——Hexo简洁主题推荐&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://hexo.io/zh-cn/docs/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo官方中文网站&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.bitbug.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在线制作ico图标&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://fanyangkong.github.io/2016/03/06/%E8%81%8A%E8%81%8AHexo%E4%B8%8Enext/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;聊聊Hexo与next&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ibruce.info/2013/11/22/hexo-your-blog/?utm_source=tuicool&amp;amp;utm_medium=referralaio&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo你的博客&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;&lt;br&gt;&lt;img alt=&quot;知识共享许可协议&quot; style=&quot;border-width:0&quot; src=&quot;https://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;本作品采用&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;知识共享署名-非商业性使用-禁止演绎 3.0 中国大陆许可协议&lt;/a&gt;进行许可。&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;之前自己搭过一个个人博客，拼凑的前端页面无法直视，再加上后台的编辑器难用的一笔，最后让我没有一点点写博客的动力了…&lt;br&gt;然后我发现了hexo…简直是不懂前端又想做自己的博客的人的福利啊~&lt;br&gt;我的动力貌似能重启了~~&lt;br&gt;markdown也是初学阶段，还花一天时间找了
+      &lt;p&gt;当初一起学习Android开发的朋友们，你们还好吗？在消失了半年的时间之后，我——凯子哥，又出现了~&lt;/p&gt;
+&lt;p&gt;首先要说声抱歉，前段时间因为刚转战到一个初创公司，作为核心的开发人员，工作时间一直维持在9106——早9晚10一周六天——的节奏，每天回到家已经是身心疲惫，博文更新的进度一度中断。最近总算是有了点改善，因此准备恢复技术博客的更新进度，但是毕竟是创业公司，更新的进度不敢保证，无论如何，是时候总结一下这段时间在技术上的成长了！&lt;/p&gt;
     
     </summary>
     
+      <category term="其他" scheme="http://kaizige.vip/categories/%E5%85%B6%E4%BB%96/"/>
     
-      <category term="Android" scheme="http://kaizige.vip/tags/Android/"/>
+    
+      <category term="Hexo" scheme="http://kaizige.vip/tags/Hexo/"/>
+    
+      <category term="Blog" scheme="http://kaizige.vip/tags/Blog/"/>
     
   </entry>
   
