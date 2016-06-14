@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kaizige.vip/"/>
-  <updated>2016-06-11T14:19:00.000Z</updated>
+  <updated>2016-06-14T15:02:23.000Z</updated>
   <id>http://kaizige.vip/</id>
   
   <author>
@@ -14,6 +14,120 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android专用Log打印工具KLog使用指南</title>
+    <link href="http://kaizige.vip/2016/06/13/klog/"/>
+    <id>http://kaizige.vip/2016/06/13/klog/</id>
+    <published>2016-06-13T15:43:48.000Z</published>
+    <updated>2016-06-14T15:02:23.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在Android开发和调试的过程中，Log的使用是非常频繁的，一个好的Log工具可以帮你节省很多时间，所以凯子哥抽空写了个这个开源项目&lt;a href=&quot;https://github.com/ZhaoKaiQiang/KLog&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;KLog&lt;/a&gt;，希望可以帮助大家提高开发效率。&lt;/p&gt;
+&lt;p&gt;本文章是KLog的项目介绍和使用说明。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;KLog功能介绍&quot;&gt;&lt;a href=&quot;#KLog功能介绍&quot; class=&quot;headerlink&quot; title=&quot;KLog功能介绍&quot;&gt;&lt;/a&gt;KLog功能介绍&lt;/h1&gt;&lt;p&gt;KLog最新版本号为1.5.0。&lt;/p&gt;
+&lt;p&gt;以下是最新版本KLog拥有的特性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持显示行号&lt;/li&gt;
+&lt;li&gt;支持显示Log所在函数名称&lt;/li&gt;
+&lt;li&gt;支持无Tag快捷打印&lt;/li&gt;
+&lt;li&gt;支持在Android Studio开发IDE中，点击函数名称，跳转至Log所在位置&lt;/li&gt;
+&lt;li&gt;支持JSON字符串解析打印&lt;/li&gt;
+&lt;li&gt;支持XML字符串解析打印&lt;/li&gt;
+&lt;li&gt;支持Log信息存储到文件&lt;/li&gt;
+&lt;li&gt;依赖库非常小，只有不到10K&lt;/li&gt;
+&lt;li&gt;支持无限长字符串打印，无Logcat4000字符限制&lt;/li&gt;
+&lt;li&gt;支持变长参数，任意个数打印参数&lt;/li&gt;
+&lt;li&gt;支持设置全局Tag&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;KLog使用三千问&quot;&gt;&lt;a href=&quot;#KLog使用三千问&quot; class=&quot;headerlink&quot; title=&quot;KLog使用三千问&quot;&gt;&lt;/a&gt;KLog使用三千问&lt;/h1&gt;&lt;h2 id=&quot;我想快速观察某处代码有没有执行怎么办？&quot;&gt;&lt;a href=&quot;#我想快速观察某处代码有没有执行怎么办？&quot; class=&quot;headerlink&quot; title=&quot;我想快速观察某处代码有没有执行怎么办？&quot;&gt;&lt;/a&gt;我想快速观察某处代码有没有执行怎么办？&lt;/h2&gt;&lt;p&gt;直接KLog.d()，不需要设置Tag，不需要输入任何字符串信息，就可以自动打印&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:32:05.889 19851-19851/com.socks.klog.sample V/Kai: [ (MainActivity.java:68)#Log ] execute&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;我想把整个App的Tag都设置成一个怎么办？&quot;&gt;&lt;a href=&quot;#我想把整个App的Tag都设置成一个怎么办？&quot; class=&quot;headerlink&quot; title=&quot;我想把整个App的Tag都设置成一个怎么办？&quot;&gt;&lt;/a&gt;我想把整个App的Tag都设置成一个怎么办？&lt;/h2&gt;&lt;p&gt;初始化的时候使用这个函数来设置全局的Tag，就可以通过Tag过滤出整个App的Log了&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;KLog.init(BuildConfig.LOG_DEBUG, &amp;quot;Kai&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;我想自己设置每个Log的Tag怎么办？&quot;&gt;&lt;a href=&quot;#我想自己设置每个Log的Tag怎么办？&quot; class=&quot;headerlink&quot; title=&quot;我想自己设置每个Log的Tag怎么办？&quot;&gt;&lt;/a&gt;我想自己设置每个Log的Tag怎么办？&lt;/h2&gt;&lt;p&gt;和使用Log一样，只是需要用KLog来完成而已&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;KLog.d(TAG, LOG_MSG);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;我要打印的字符串非常长，系统自带的Log只能显示一部分怎么办？&quot;&gt;&lt;a href=&quot;#我要打印的字符串非常长，系统自带的Log只能显示一部分怎么办？&quot; class=&quot;headerlink&quot; title=&quot;我要打印的字符串非常长，系统自带的Log只能显示一部分怎么办？&quot;&gt;&lt;/a&gt;我要打印的字符串非常长，系统自带的Log只能显示一部分怎么办？&lt;/h2&gt;&lt;p&gt;KLog会对超长字符串进行处理，保证全部的字符串都可以打印出来，再也没有了只能打印一部分的问题了~&lt;/p&gt;
+&lt;h2 id=&quot;我要输出的格式是Json的，我想打印出Json格式怎么办&quot;&gt;&lt;a href=&quot;#我要输出的格式是Json的，我想打印出Json格式怎么办&quot; class=&quot;headerlink&quot; title=&quot;我要输出的格式是Json的，我想打印出Json格式怎么办&quot;&gt;&lt;/a&gt;我要输出的格式是Json的，我想打印出Json格式怎么办&lt;/h2&gt;&lt;p&gt;直接&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;KLog.json(JSON);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;就可以自动的将Json格式输出&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.042 19851-19851/com.socks.klog.sample D/Kai: ╔═══════════════════════════════════════════════════════════════════════════════════════&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.042 19851-19851/com.socks.klog.sample D/Kai: ║ [ (MainActivity.java:120)#LogWithJson ] &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║ &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║     &amp;quot;menu&amp;quot;: [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║         &amp;quot;泰式柠檬肉片&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║         &amp;quot;鸡柳汉堡&amp;quot;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║         &amp;quot;蒸桂鱼卷 &amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║     ],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║     &amp;quot;tag&amp;quot;: &amp;quot;其他&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ║ &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:37:43.043 19851-19851/com.socks.klog.sample D/Kai: ╚═══════════════════════════════════════════════════════════════════════════════════════&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;我想输出XML格式呢？&quot;&gt;&lt;a href=&quot;#我想输出XML格式呢？&quot; class=&quot;headerlink&quot; title=&quot;我想输出XML格式呢？&quot;&gt;&lt;/a&gt;我想输出XML格式呢？&lt;/h2&gt;&lt;p&gt;一样简单，只需要&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;KLog.xml(XML);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;就可以输出XML格式了&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.629 19851-19851/com.socks.klog.sample D/Kai: ╔═══════════════════════════════════════════════════════════════════════════════════════&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.629 19851-19851/com.socks.klog.sample D/Kai: ║ [ (MainActivity.java:140)#LogWithXml ] &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.629 19851-19851/com.socks.klog.sample D/Kai: ║ &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.629 19851-19851/com.socks.klog.sample D/Kai: ║ &amp;lt;!--  Copyright w3school.com.cn --&amp;gt;&amp;lt;note&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.630 19851-19851/com.socks.klog.sample D/Kai: ║   &amp;lt;to&amp;gt;George&amp;lt;/to&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.630 19851-19851/com.socks.klog.sample D/Kai: ║   &amp;lt;from&amp;gt;John&amp;lt;/from&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.630 19851-19851/com.socks.klog.sample D/Kai: ║   &amp;lt;heading&amp;gt;Reminder&amp;lt;/heading&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.630 19851-19851/com.socks.klog.sample D/Kai: ║   &amp;lt;body&amp;gt;Don&amp;apos;t forget the meeting!&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.630 19851-19851/com.socks.klog.sample D/Kai: ║ &amp;lt;/note&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:38:34.630 19851-19851/com.socks.klog.sample D/Kai: ╚═══════════════════════════════════════════════════════════════════════════════════════&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;我有一段字符串需要处理，能自动保存到文件吗？&quot;&gt;&lt;a href=&quot;#我有一段字符串需要处理，能自动保存到文件吗？&quot; class=&quot;headerlink&quot; title=&quot;我有一段字符串需要处理，能自动保存到文件吗？&quot;&gt;&lt;/a&gt;我有一段字符串需要处理，能自动保存到文件吗？&lt;/h2&gt;&lt;p&gt;当然可以，只需要&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;KLog.file(TAG, Environment.getExternalStorageDirectory(), &amp;quot;test.txt&amp;quot;, JSON_LONG);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;就可以保存了&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;06-14 22:40:19.418 19851-19851/com.socks.klog.sample D/Kai: [ (MainActivity.java:134)#LogWithFile ]  save log success ! location is &amp;gt;&amp;gt;&amp;gt;/storage/emulated/0/test.txt&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;KLog这么强大，会不会占用很大的空间？&quot;&gt;&lt;a href=&quot;#KLog这么强大，会不会占用很大的空间？&quot; class=&quot;headerlink&quot; title=&quot;KLog这么强大，会不会占用很大的空间？&quot;&gt;&lt;/a&gt;KLog这么强大，会不会占用很大的空间？&lt;/h2&gt;&lt;p&gt;Klog依赖包只有10K大小，只需要10K，就可以满足你日常打印Log的需求，超值！&lt;/p&gt;
+&lt;h2 id=&quot;我想用KLog，应该怎么办呢？&quot;&gt;&lt;a href=&quot;#我想用KLog，应该怎么办呢？&quot; class=&quot;headerlink&quot; title=&quot;我想用KLog，应该怎么办呢？&quot;&gt;&lt;/a&gt;我想用KLog，应该怎么办呢？&lt;/h2&gt;&lt;p&gt;最简单的方法，你可以直接使用gradle引用&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dependencies &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    compile &amp;apos;com.github.zhaokaiqiang.klog:library:1.5.0&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当然，在项目里面也提供了KLog.jar，你也可以直接拷贝到你的项目里使用。&lt;/p&gt;
+&lt;h2 id=&quot;使用KLog的过程中，有没有最佳实践？&quot;&gt;&lt;a href=&quot;#使用KLog的过程中，有没有最佳实践？&quot; class=&quot;headerlink&quot; title=&quot;使用KLog的过程中，有没有最佳实践？&quot;&gt;&lt;/a&gt;使用KLog的过程中，有没有最佳实践？&lt;/h2&gt;&lt;p&gt;当然有，下面就介绍几个最佳实践。&lt;/p&gt;
+&lt;p&gt;请在Application初始化的时候就对KLog进行初始化，因为KLog的初始化过程非常的简单，因此不会影响App的启动速度&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public class KLogApplication extends Application &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public void onCreate() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        super.onCreate();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        KLog.init(BuildConfig.LOG_DEBUG, &amp;quot;Kai&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;对于全局打印开关，推荐使用Gradle变量进行控制，这样当发布release版本的时候，就会自动的关闭Log的输出，防止信息的泄露和影响效率。&lt;/p&gt;
+&lt;p&gt;具体的设置方法如下：&lt;/p&gt;
+&lt;p&gt;首先在BuildConfig中添加自定义字段。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public final class BuildConfig &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  public static final boolean LOG_DEBUG = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后在主项目的gradle中添加变量LOG_DEBUG，并且在debug和release下分别设置不同的值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;android {
+
+    buildTypes {
+
+        debug {
+            buildConfigField &amp;quot;boolean&amp;quot;, &amp;quot;LOG_DEBUG&amp;quot;, &amp;quot;true&amp;quot;
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;
+        }
+
+        release {
+            buildConfigField &amp;quot;boolean&amp;quot;, &amp;quot;LOG_DEBUG&amp;quot;, &amp;quot;false&amp;quot;
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile(&amp;apos;proguard-android.txt&amp;apos;), &amp;apos;proguard-rules.pro&amp;apos;
+        }
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样当发布release版本的时候就会自动关闭Log的输出。&lt;/p&gt;
+&lt;p&gt;如果想在release版本中也打印Log，只需要修改release括号内的LOG_DEBUG为true就可以了。&lt;/p&gt;
+&lt;h2 id=&quot;如何设置不同等级的Log颜色&quot;&gt;&lt;a href=&quot;#如何设置不同等级的Log颜色&quot; class=&quot;headerlink&quot; title=&quot;如何设置不同等级的Log颜色&quot;&gt;&lt;/a&gt;如何设置不同等级的Log颜色&lt;/h2&gt;&lt;p&gt;另外，为了Log更好的查看效果，可以为不同的Log等级设置不同的颜色，这样便于Log的观看。&lt;/p&gt;
+&lt;p&gt;如下，需要“Save as”保存主题，然后取消“use inherited attributes”，即可设置自己想要的颜色&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o8l7jwurv.bkt.clouddn.com/QQ20160614-0.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我的配色方案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A=FF2E0E&lt;/li&gt;
+&lt;li&gt;D=38F838&lt;/li&gt;
+&lt;li&gt;E=FF6B68&lt;/li&gt;
+&lt;li&gt;I=1DBB92&lt;/li&gt;
+&lt;li&gt;V=FFF7EE&lt;/li&gt;
+&lt;li&gt;W=FF9229&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;打印效果&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o8l7jwurv.bkt.clouddn.com/QQ20160614-1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目地址&quot;&gt;&lt;a href=&quot;#项目地址&quot; class=&quot;headerlink&quot; title=&quot;项目地址&quot;&gt;&lt;/a&gt;项目地址&lt;/h1&gt;&lt;p&gt;请点击&lt;a href=&quot;https://github.com/ZhaoKaiQiang/KLog&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;，欢迎star和follow，以及提交issue和pull request。&lt;/p&gt;
+&lt;p&gt;本开源库的部分灵感来自于&lt;a href=&quot;https://github.com/orhanobut/logger&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Logger&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;&lt;br&gt;&lt;img alt=&quot;知识共享许可协议&quot; style=&quot;border-width:0&quot; src=&quot;https://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;本作品采用&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;知识共享署名-非商业性使用-禁止演绎 3.0 中国大陆许可协议&lt;/a&gt;进行许可。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在Android开发和调试的过程中，Log的使用是非常频繁的，一个好的Log工具可以帮你节省很多时间，所以凯子哥抽空写了个这个开源项目&lt;a href=&quot;https://github.com/ZhaoKaiQiang/KLog&quot;&gt;KLog&lt;/a&gt;，希望可以帮助大家提高开发效率。&lt;/p&gt;
+&lt;p&gt;本文章是KLog的项目介绍和使用说明。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://kaizige.vip/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://kaizige.vip/tags/Android/"/>
+    
+      <category term="KLog" scheme="http://kaizige.vip/tags/KLog/"/>
+    
+      <category term="Log" scheme="http://kaizige.vip/tags/Log/"/>
+    
+      <category term="Util" scheme="http://kaizige.vip/tags/Util/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Hexo搭建免费的个人技术博客</title>
