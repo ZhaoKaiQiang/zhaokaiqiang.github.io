@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kaizige.vip/"/>
-  <updated>2016-06-14T15:02:23.000Z</updated>
+  <updated>2016-06-26T13:24:43.000Z</updated>
   <id>http://kaizige.vip/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何解决Markdown本地图片的保存问题？</title>
+    <link href="http://kaizige.vip/2016/06/26/how-to-save-blog-image/"/>
+    <id>http://kaizige.vip/2016/06/26/how-to-save-blog-image/</id>
+    <published>2016-06-26T11:37:32.000Z</published>
+    <updated>2016-06-26T13:24:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;如果要使用独立Blog，一个要解决的重要问题就是如何保存图片。之前在CSDN写Blog的时候，使用的是国内的免费图床，但是突然有一天，一个图床因为涉黄被封，造成文章中很多重要的图片丢失，再也找不回来了。&lt;/p&gt;
+&lt;p&gt;那么，如何才能更安全、方便的保存我们Markdown文件中的图片呢？&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;使用哪个图床？&quot;&gt;&lt;a href=&quot;#使用哪个图床？&quot; class=&quot;headerlink&quot; title=&quot;使用哪个图床？&quot;&gt;&lt;/a&gt;使用哪个图床？&lt;/h1&gt;&lt;p&gt;七牛算是国内做的比较好的图片存储服务了，对于注册用户，七牛提供10G免费网络存储和10G的月下载流量，对于个人技术Blog来说，完全足够。所以我的Blog采用的是七牛的免费图片服务。&lt;/p&gt;
+&lt;p&gt;对于那些不需要注册，免费上传图片的图床要小心了，因为监管不严，说不定哪天就挂掉，你整理的很多宝贵资料就灰飞烟灭了，所以选择一个比较成熟的第三方厂商是非常重要的！&lt;/p&gt;
+&lt;h1 id=&quot;如何更方便的解决本地图片保存问题&quot;&gt;&lt;a href=&quot;#如何更方便的解决本地图片保存问题&quot; class=&quot;headerlink&quot; title=&quot;如何更方便的解决本地图片保存问题&quot;&gt;&lt;/a&gt;如何更方便的解决本地图片保存问题&lt;/h1&gt;&lt;p&gt;使用Markdown写Blog非常方便，为了图文并茂，我们经常需要截图来说明问题，那么本地的图片怎么更好的保存呢？&lt;/p&gt;
+&lt;p&gt;我之前写Blog的流程是，如果需要图片，就截图，然后手动上传到免费图床，获取到Url之后，直接填写到内容中，这里就存在两个问题。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;图床是随意选择的，出了问题找不到人解决&lt;/li&gt;
+&lt;li&gt;每次截图都需要截图、上传、复制粘贴三个步骤，很繁琐，思绪容易被打断&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;为了解决这个问题，我写了&lt;a href=&quot;https://github.com/ZhaoKaiQiang/MdImageResolver&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MdImageResolver&lt;/a&gt;这个项目。&lt;/p&gt;
+&lt;h1 id=&quot;解决方案&quot;&gt;&lt;a href=&quot;#解决方案&quot; class=&quot;headerlink&quot; title=&quot;解决方案&quot;&gt;&lt;/a&gt;解决方案&lt;/h1&gt;&lt;p&gt;其实解决思路很简单，就是写的时候，使用本地的图片，写完之后，自动解析本地的图片，然后自动上传到七牛的云服务，最后将获得的图片地址替换本地地址，完成内容的解析。&lt;/p&gt;
+&lt;p&gt;因为代码比较简单，所以这里只介绍使用方法。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;到&lt;a href=&quot;https://github.com/ZhaoKaiQiang/MdImageResolver/tree/master/release&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;下载jar包&lt;/li&gt;
+&lt;li&gt;java -jar file_name 开始运行jar包&lt;/li&gt;
+&lt;li&gt;第一次使用的时候需要输入相关信息，具体信息下面介绍&lt;/li&gt;
+&lt;li&gt;选择保存模式，一种是覆盖模式，会替换原内容；一种是备份模式，会创建新的文件保存，文件名=原文件名_bak&lt;/li&gt;
+&lt;li&gt;自动完成解析、上传、替换、保存步骤&lt;/li&gt;
+&lt;li&gt;结束&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;必要信息&quot;&gt;&lt;a href=&quot;#必要信息&quot; class=&quot;headerlink&quot; title=&quot;必要信息&quot;&gt;&lt;/a&gt;必要信息&lt;/h1&gt;&lt;p&gt;一共有四个信息需要提供，填写一次之后，会自动保存在jar所在路径的local.properties文件中，你可以直接修改这个文件。数据格式是json。&lt;/p&gt;
+&lt;p&gt;access key 和secret key在&lt;a href=&quot;https://portal.qiniu.com/user/key&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;密钥管理&lt;/a&gt;界面获得&lt;/p&gt;
+&lt;p&gt;bucket name 就是创建的存储空间的名字&lt;/p&gt;
+&lt;p&gt;domain 指的是测试域名，在空间详情页可以看到&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://o8l7jwurv.bkt.clouddn.com/QQ20160626-0.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;项目地址&quot;&gt;&lt;a href=&quot;#项目地址&quot; class=&quot;headerlink&quot; title=&quot;项目地址&quot;&gt;&lt;/a&gt;项目地址&lt;/h1&gt;&lt;p&gt;项目托管在&lt;a href=&quot;https://github.com/ZhaoKaiQiang/MdImageResolver&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;，欢迎follow，star!&lt;/p&gt;
+&lt;p&gt;这篇文章中的配图就是用这个工具完成的，用起来还不错哦~&lt;/p&gt;
+&lt;h1 id=&quot;参考资料及版权声明&quot;&gt;&lt;a href=&quot;#参考资料及版权声明&quot; class=&quot;headerlink&quot; title=&quot;参考资料及版权声明&quot;&gt;&lt;/a&gt;参考资料及版权声明&lt;/h1&gt;&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;&lt;br&gt;&lt;img alt=&quot;知识共享许可协议&quot; style=&quot;border-width:0&quot; src=&quot;https://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;本文章采用&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;知识共享署名-非商业性使用-禁止演绎 3.0 中国大陆许可协议&lt;/a&gt;进行许可。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;如果要使用独立Blog，一个要解决的重要问题就是如何保存图片。之前在CSDN写Blog的时候，使用的是国内的免费图床，但是突然有一天，一个图床因为涉黄被封，造成文章中很多重要的图片丢失，再也找不回来了。&lt;/p&gt;
+&lt;p&gt;那么，如何才能更安全、方便的保存我们Markdown文件中的图片呢？&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://kaizige.vip/categories/Java/"/>
+    
+    
+      <category term="Util" scheme="http://kaizige.vip/tags/Util/"/>
+    
+      <category term="Java" scheme="http://kaizige.vip/tags/Java/"/>
+    
+      <category term="Markdown" scheme="http://kaizige.vip/tags/Markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>Android专用Log打印工具KLog使用指南</title>
