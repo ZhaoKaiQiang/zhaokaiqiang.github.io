@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://kaizige.vip/about/index.html</loc>
+    
+    <lastmod>2016-09-05T12:31:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://kaizige.vip/2016/09/05/strategy-pattern/</loc>
     
     <lastmod>2016-09-05T12:14:37.000Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://kaizige.vip/2016/06/10/how-to-build-up-yourself-hexo-blog/</loc>
     
     <lastmod>2016-06-11T14:19:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://kaizige.vip/about/index.html</loc>
-    
-    <lastmod>2016-06-08T10:33:03.000Z</lastmod>
     
   </url>
   
