@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kaizige.vip/"/>
-  <updated>2016-09-05T12:14:37.000Z</updated>
+  <updated>2016-09-16T13:43:35.000Z</updated>
   <id>http://kaizige.vip/</id>
   
   <author>
@@ -16,11 +16,125 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【设计模式】单例设计模式(Singlton)</title>
+    <link href="http://kaizige.vip/2016/09/16/singleton-pattern/"/>
+    <id>http://kaizige.vip/2016/09/16/singleton-pattern/</id>
+    <published>2016-09-16T13:33:17.000Z</published>
+    <updated>2016-09-16T13:43:35.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在面试中，当我问面试者知道什么设计模式的时候，他们通常第一个说出来的就是单例设计模式，大概是觉得单例是众多设计模式中比较容易掌握的一种吧，但是我也发现，大多数面试者对单例的了解比较片面，今天我们就再来一起学习一下单例设计模式。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;单例的常见实现方式&quot;&gt;&lt;a href=&quot;#单例的常见实现方式&quot; class=&quot;headerlink&quot; title=&quot;单例的常见实现方式&quot;&gt;&lt;/a&gt;单例的常见实现方式&lt;/h2&gt;&lt;p&gt;虽然单例模式的实现比较简单，但是也存在着几种不同的实现方式，总结一下，单例模式需要具备三个特点&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;私有构造函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;静态变量引用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对外暴露静态方法获取单例对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;饿汉式单例模式&quot;&gt;&lt;a href=&quot;#饿汉式单例模式&quot; class=&quot;headerlink&quot; title=&quot;饿汉式单例模式&quot;&gt;&lt;/a&gt;饿汉式单例模式&lt;/h3&gt;&lt;p&gt;饿汉式单例模式很简单，上来就进行单例对象的初始化，这种模式可以解决多线程操作造成的同步问题，但是由于一上来就进行初始化操作，不适合初始化非常消耗资源的情况。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Singleton &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private static Singleton sSingleton = new Singleton();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private Singleton() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static Singleton getInstance() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;懒汉式单例模式&quot;&gt;&lt;a href=&quot;#懒汉式单例模式&quot; class=&quot;headerlink&quot; title=&quot;懒汉式单例模式&quot;&gt;&lt;/a&gt;懒汉式单例模式&lt;/h3&gt;&lt;p&gt;懒汉式模式采用的是延迟加载得策略，只有在用的时候才会初始化。但是在多线程环境下，会出现线程同步的问题，因此我们需要手动加锁，但是这种方式会造成效率低下，对效率要求比较严格的情况下不太合适。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Singleton &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private static Singleton sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private Singleton() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static synchronized Singleton getInstance() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (sSingleton == null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            sSingleton = new Singleton();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;双重检查加锁单例模式&quot;&gt;&lt;a href=&quot;#双重检查加锁单例模式&quot; class=&quot;headerlink&quot; title=&quot;双重检查加锁单例模式&quot;&gt;&lt;/a&gt;双重检查加锁单例模式&lt;/h3&gt;&lt;p&gt;为了满足多线程同步和效率问题，出现了这种方式的单例模式，可以兼顾效率和安全的问题。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Singleton &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private static Singleton sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private Singleton() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public static Singleton getInstance() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if (sSingleton == null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            synchronized (Singleton.class) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                if (sSingleton == null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                    sSingleton = new Singleton();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###枚举单例模式&lt;/p&gt;
+&lt;p&gt;JVM对枚举类型的支持，使得我们可以很简单的创建一个线程安全的单例模式。与此同时，上面三种方法都面临着一个问题，那就是使用反射可以破坏这种单例，但是使用枚举类型，则可以避免这个问题的发生。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public enum SingletonWrapper &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    INSTANCE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    private SingletonWrapper() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;###静态内部类&lt;/p&gt;
+&lt;p&gt;利用静态内部类的方式也可以实现单例模式&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Singleton &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	private Singleton() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	static class SingletonHolder &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		private static Singleton sSingleton = new Singleton();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public static Singleton getInstance() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return SingletonHolder.sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;单例模式和使用全静态方法-变量的类应该如何选择？&quot;&gt;&lt;a href=&quot;#单例模式和使用全静态方法-变量的类应该如何选择？&quot; class=&quot;headerlink&quot; title=&quot;单例模式和使用全静态方法/变量的类应该如何选择？&quot;&gt;&lt;/a&gt;单例模式和使用全静态方法/变量的类应该如何选择？&lt;/h2&gt;&lt;p&gt;使用单例模式我们可以通过一个对象完成功能，使用全静态方法的方式也可以体会到类似的功能，那么这两种方式到底有什么区别，我们应该如何选择呢？&lt;/p&gt;
+&lt;p&gt;首先，我认为这两种方式要实现的目的是不同的。&lt;/p&gt;
+&lt;p&gt;单例模式的目的是整个进程保持只有同一个对象，并且提供全局访问点，保持只有一个对象的功能是从语法角度来解决的，正常使用不会产生第二个对象实例。使用一个实例可以保证全局的状态统一，而不是为了调用起来方便。&lt;/p&gt;
+&lt;p&gt;将一个类中所有的方法和变量都声明为static虽然能体会到类似的用法，但是静态初始化的过程全都交给了Java手中，当初始化操作比较耗费资源时，也不能够通过延迟加载来改善性能，同时当类比较复杂时，有可能造成一些和初始化次序相关的问题，难以发现。而且，全静态的类虽然没必要生成对象实例，但是如果想生成的话，从语法上是没法保证单实例存在的。这也是和单例模式迥异的一点。&lt;/p&gt;
+&lt;p&gt;除了上层的这些差异，在底部实现上也存在区别。&lt;/p&gt;
+&lt;p&gt;单例模式虽然只有一个实例，但还是属于一个对象，由于static引用，会一直存在于堆内存上。如果想要释放内存，可以手动置空。&lt;/p&gt;
+&lt;p&gt;而使用全静态的类，整个类都是静态的，所以存在于方法区，即永生代，永远不会被回收，除非class被卸载。&lt;/p&gt;
+&lt;p&gt;所以在选择使用哪种方式的时候，我们应该注意使用场景。&lt;/p&gt;
+&lt;p&gt;使用单例模式的场景包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;全局应该只保持一个对象，来确保全局状态的统一&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;类的初始化非常耗费资源，需要延迟加载&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;有可能需要手动释放单例对象&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;使用全静态类的场景包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;工具类，只对外提供静态方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;没有复杂的初始化操作&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;单例模式的缺点&quot;&gt;&lt;a href=&quot;#单例模式的缺点&quot; class=&quot;headerlink&quot; title=&quot;单例模式的缺点&quot;&gt;&lt;/a&gt;单例模式的缺点&lt;/h2&gt;&lt;p&gt;上面提到了单例模式的特点，下面主要总结一下缺点。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在并行开发中，如果单例没有完成，就没办法测试&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;单例模式一般没有接口，很难扩展，如果要修改逻辑，就需要修改代码，与“开闭原则”相违背&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;一种破坏单例模式的方法&quot;&gt;&lt;a href=&quot;#一种破坏单例模式的方法&quot; class=&quot;headerlink&quot; title=&quot;一种破坏单例模式的方法&quot;&gt;&lt;/a&gt;一种破坏单例模式的方法&lt;/h2&gt;&lt;p&gt;除了使用反射可以破坏掉单例之外，还存在一种方法可以在不经意间破坏掉单例模式，而且很难发现，那就是静态方法块。&lt;/p&gt;
+&lt;p&gt;首先是我们的单实例类Singleton&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class Singleton &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	private static Singleton sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	private String mString;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	private Singleton() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(&amp;quot;Create singleton ------------------ 1 &amp;quot; + this);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		mString = SingletonDestyoyer.getString();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(&amp;quot;Create singleton ------------------ 2 &amp;quot; + this);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public String toString() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return super.toString() + &amp;quot; mString = &amp;quot; + mString;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public static Singleton getInstance() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (sSingleton == null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			synchronized (Singleton.class) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				if (sSingleton == null) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					sSingleton = new Singleton();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return sSingleton;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public static void main(String[] args) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Singleton singleton = Singleton.getInstance();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(&amp;quot;Main singleton = &amp;quot; + singleton);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;另外一个则是会破坏单实例的SingletonDestyoyer类&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public class SingletonDestyoyer &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    //静态方法块会破坏单实例&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	static &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Singleton singleton = Singleton.getInstance();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(&amp;quot;Destyoyer singleton = &amp;quot; + singleton);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	public static String getString() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return &amp;quot;Test &amp;quot; + System.currentTimeMillis();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们先来看一下运行结果&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Create singleton ------------------ 1 com.demo.Singleton@74a14482 mString = null&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Create singleton ------------------ 1 com.demo.Singleton@1540e19d mString = null&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Create singleton ------------------ 2 com.demo.Singleton@1540e19d mString = Test1474030286564&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Other singleton = com.demo.Singleton@1540e19d mString = Test1474030286564&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Create singleton ------------------ 2 com.demo.Singleton@74a14482 mString = Test1474030286564&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Main singleton = com.demo.Singleton@74a14482 mString = Test1474030286564&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;从输出结果中我们可以看到，Singleton的构造方法执行了2次，创建了2个不同的对象，单例模式遭到了破坏，下面我从执行次序上说明为什么会造成这种结果。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在main()中生成Singleton对象时，会发现没有初始化，会调用Singleton的构造函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在Singleton中调用了SingletonDestyoyer的静态方法，JVM加载SingletonDestyoyer的class文件，执行静态方法区&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;静态方法区里面又调用了Singleton的构造函数，因为这个时候还没有初始化完成，所以会再次进入构造方法，这时候的对象已经和第一次进入的时候不同了，创建了第二个实例&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;静态方法区的对象创建完成&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第一次进入的构造函数得以继续执行，完成第一个对象的创建&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;返回创建的对象，继续执行main()&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;7.这个时候main()里面的实例和静态方法区的实例已经不是同一个，单例模式遭到了破坏&lt;/p&gt;
+&lt;p&gt;所以在使用单例模式的时候，要特别注意静态方法区的使用，最好不要在静态代码块里面调用单例，因为是由JVM控制初始化，所以造成了难以发现的问题。&lt;/p&gt;
+&lt;p&gt;上面的运行结果只在使用饿汉式，懒汉式和双重检查锁方式有效，如果你使用内部静态类的单例模式，会发现运行结果不一样，至于是怎么不一样，你自己去试试吧。&lt;/p&gt;
+&lt;h2 id=&quot;应用举例&quot;&gt;&lt;a href=&quot;#应用举例&quot; class=&quot;headerlink&quot; title=&quot;应用举例&quot;&gt;&lt;/a&gt;应用举例&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;Glide图片加载框架&lt;/li&gt;
+&lt;li&gt;Android Framework中的 frameworks/base/core/java/android/text/Editable.java 等&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;&lt;br&gt;&lt;img alt=&quot;知识共享许可协议&quot; style=&quot;border-width:0&quot; src=&quot;https://i.creativecommons.org/l/by-nc-nd/3.0/cn/88x31.png&quot;&gt;&lt;br&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;本作品采用&lt;a rel=&quot;external&quot; href=&quot;http://creativecommons.org/licenses/by-nc-nd/3.0/cn/&quot; target=&quot;_blank&quot;&gt;知识共享署名-非商业性使用-禁止演绎 3.0 中国大陆许可协议&lt;/a&gt;进行许可。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在面试中，当我问面试者知道什么设计模式的时候，他们通常第一个说出来的就是单例设计模式，大概是觉得单例是众多设计模式中比较容易掌握的一种吧，但是我也发现，大多数面试者对单例的了解比较片面，今天我们就再来一起学习一下单例设计模式。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://kaizige.vip/categories/Android/"/>
+    
+    
+      <category term="Android" scheme="http://kaizige.vip/tags/Android/"/>
+    
+      <category term="设计模式" scheme="http://kaizige.vip/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="Pattern" scheme="http://kaizige.vip/tags/Pattern/"/>
+    
+      <category term="Singleton" scheme="http://kaizige.vip/tags/Singleton/"/>
+    
+      <category term="单例" scheme="http://kaizige.vip/tags/%E5%8D%95%E4%BE%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【设计模式】策略模式</title>
     <link href="http://kaizige.vip/2016/09/05/strategy-pattern/"/>
     <id>http://kaizige.vip/2016/09/05/strategy-pattern/</id>
     <published>2016-09-05T12:09:18.000Z</published>
-    <updated>2016-09-05T12:14:37.000Z</updated>
+    <updated>2016-09-16T13:43:05.000Z</updated>
     
     <content type="html">&lt;p&gt;凯子哥到新公司入职的第一天，就被老板交到了办公室。&lt;/p&gt;
 &lt;p&gt;老板说：“凯子啊，听说你最近在研究设计模式呀，有什么收获吗？”&lt;/p&gt;
@@ -56,8 +170,7 @@
 &lt;p&gt;回到工位后，一想到以后还有可能适配全球N种语言，凯子坐在座位上傻掉了。&lt;/p&gt;
 &lt;p&gt;一个小时以后(有可能思考的时候睡着了)，凯子眼前一亮，嘴中不断的呢喃着：”策略！策略！策略模式啊！“&lt;/p&gt;
 &lt;p&gt;那么，什么是策略模式呢？&lt;/p&gt;
-&lt;p&gt;##策略模式的定义&lt;/p&gt;
-&lt;p&gt;策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的替换独立于算法的客户。&lt;/p&gt;
+&lt;h1 id=&quot;策略模式的定义&quot;&gt;&lt;a href=&quot;#策略模式的定义&quot; class=&quot;headerlink&quot; title=&quot;策略模式的定义&quot;&gt;&lt;/a&gt;策略模式的定义&lt;/h1&gt;&lt;p&gt;策略模式定义了算法族，分别封装起来，让它们之间可以相互替换，此模式让算法的替换独立于算法的客户。&lt;/p&gt;
 &lt;p&gt;我知道这样死板的定义你不想看，那么我们就一起思考下，在这个场景下，可以使用策略模式吗？&lt;/p&gt;
 &lt;p&gt;我认为，掌握策略模式最重要的就是要理解以下两点：&lt;/p&gt;
 &lt;ol&gt;
@@ -70,8 +183,7 @@
 &lt;p&gt;首先不要被这个“算法”所迷惑，不要认为只有在涉及到比较复杂的运算的时候才使用到算法，其实这里的算法随处可见，比如说上面提到的这个简单的获取每日数据的类，是不是算法呢？我认为是算的，只要涉及到逻辑的地方都有算法的存在，只不过有的简单，有的复杂罢了。&lt;/p&gt;
 &lt;p&gt;那么怎么理解“族”呢？“族”就指的不是一个，就是一群，而且一定是一群具有相似的属性的事物才能是一个族，比如“汉族”。除此之外，有“族”就存在多态，就像“我是一个汉族人”，“归并排序算法是一种排序算法”，理解了这一点，就很容易理解策略模式了。&lt;/p&gt;
 &lt;p&gt;那么怎么理解替换呢？既然存在多态了，如果我要一个排序算法，你给我一个归并排序算法，可不可以呢？当然可以。那我想要其他类型的排序算法可以吗？当然也可以。多态的威力就在于此，随便你怎么替换，只要能满足我的需求就ok。那么怎么替换呢？一个简单的setter就解决了。&lt;/p&gt;
-&lt;p&gt;##改造代码&lt;/p&gt;
-&lt;p&gt;已经简单的了解了下什么是策略模式，那么我们怎么改造一下上面的代码呢？&lt;/p&gt;
+&lt;h1 id=&quot;改造代码&quot;&gt;&lt;a href=&quot;#改造代码&quot; class=&quot;headerlink&quot; title=&quot;改造代码&quot;&gt;&lt;/a&gt;改造代码&lt;/h1&gt;&lt;p&gt;已经简单的了解了下什么是策略模式，那么我们怎么改造一下上面的代码呢？&lt;/p&gt;
 &lt;p&gt;首先我们要找出可以替换的算法族。怎么找呢？其实有一个窍门，那就是如果有很多if语句，就说明这里可以分解成很多的策略，在这里就是这两个方法&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static List&amp;lt;String&amp;gt; getAllChannelName(Context context)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public static int getDataSource(Context context, String channelName)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;既然算法族可以替换，我们就应该提取基类，然后在子类中实现不同的算法，比如我们这里定义基类为抽象类DailyDataCapturer，它包含了上面两个可以替换的算法，以及一些常量类&lt;/p&gt;
@@ -84,8 +196,7 @@
 &lt;p&gt;我们只需要在init()中完成子类的选择，后面的所有方法就可以直接对接到合适的算法，减少了if语句的使用，使得逻辑更加的清晰。&lt;/p&gt;
 &lt;p&gt;如果我们想要添加一种语言的支持，现在还很困难吗？如果是以前的结构，我们需要修改所有涉及到语言的函数，复制粘贴，然后修改成对应语言的逻辑，这样就破坏了函数的封装性，还记得那句话吗？”对修改关闭，对扩展开放“，用if语句的方式来实现不同的策略，每次增删都需要修改原有代码，很容易引入BUG，同时也使得测试的压力变大，因为之前的逻辑都被修改了。&lt;/p&gt;
 &lt;p&gt;但是如果采用现在的策略模式，我们每增加一种语言的支持，我们只需要添加一个子类，然后在init()中添加子类的初始化逻辑即可，其他的任何代码不需要改动，这无疑大大提高了代码的可靠性，以前的代码不需要在进行重新测试，所以是对”对修改关闭，对扩展开放“。&lt;/p&gt;
-&lt;p&gt;##优缺点总结&lt;/p&gt;
-&lt;p&gt;从上面的情境中，我们可以总结出使用策略模式的优缺点。&lt;/p&gt;
+&lt;h1 id=&quot;优缺点总结&quot;&gt;&lt;a href=&quot;#优缺点总结&quot; class=&quot;headerlink&quot; title=&quot;优缺点总结&quot;&gt;&lt;/a&gt;优缺点总结&lt;/h1&gt;&lt;p&gt;从上面的情境中，我们可以总结出使用策略模式的优缺点。&lt;/p&gt;
 &lt;p&gt;优点就是：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;利用继承来将需要实现的具体方法放在基类中，添加新的策略子类时，只需要继承然后完成具体实现即可&lt;/p&gt;
@@ -103,8 +214,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;相对于策略类带来的优势而言，这些缺点相对而言还是可以接受的，如果你的业务逻辑适合使用策略模式，那就尽情的使用吧！&lt;/p&gt;
-&lt;p&gt;##应用举例&lt;/p&gt;
-&lt;p&gt;在Android中策略模式最常见的应用是各种View的Adapter实现，比如ListView和RecyclerView的Adapter实现，虽然Adapter是一种很明显的适配器模式，但是想想我们在使用Adapter的过程中是否有策略模式的影子？&lt;/p&gt;
+&lt;h1 id=&quot;应用举例&quot;&gt;&lt;a href=&quot;#应用举例&quot; class=&quot;headerlink&quot; title=&quot;应用举例&quot;&gt;&lt;/a&gt;应用举例&lt;/h1&gt;&lt;p&gt;在Android中策略模式最常见的应用是各种View的Adapter实现，比如ListView和RecyclerView的Adapter实现，虽然Adapter是一种很明显的适配器模式，但是想想我们在使用Adapter的过程中是否有策略模式的影子？&lt;/p&gt;
 &lt;p&gt;以RecyclerView为例，首先我们必须继承RecyclerView.Adapter，然后实现下面三个方法&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public RecordHolder onCreateViewHolder(ViewGroup parent, int viewType) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public void onBindViewHolder(RecordHolder holder, int position) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;@Override&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public int getItemCount() &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;这就相当于是算法族里面的可替换算法，到底返回多少个item，生成什么样的界面，都是我们的子类控制的。想想一下，假如我们有一个商品详情界面，在不同分辨率的手机上的显示元素不同，那么我们只需要在界面初始化的时候根据分辨率动态的初始化不同分辨率的的Adapter子类就可以了，这就是不同的策略，也当然是一种策略模式。&lt;/p&gt;
@@ -127,6 +237,14 @@
     
     
       <category term="Android" scheme="http://kaizige.vip/tags/Android/"/>
+    
+      <category term="设计模式" scheme="http://kaizige.vip/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="Pattern" scheme="http://kaizige.vip/tags/Pattern/"/>
+    
+      <category term="Strategy" scheme="http://kaizige.vip/tags/Strategy/"/>
+    
+      <category term="策略设计模式" scheme="http://kaizige.vip/tags/%E7%AD%96%E7%95%A5%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -178,9 +296,9 @@
       <category term="Java" scheme="http://kaizige.vip/categories/Java/"/>
     
     
-      <category term="Util" scheme="http://kaizige.vip/tags/Util/"/>
-    
       <category term="Java" scheme="http://kaizige.vip/tags/Java/"/>
+    
+      <category term="Util" scheme="http://kaizige.vip/tags/Util/"/>
     
       <category term="Markdown" scheme="http://kaizige.vip/tags/Markdown/"/>
     
@@ -292,11 +410,11 @@
     
       <category term="Android" scheme="http://kaizige.vip/tags/Android/"/>
     
+      <category term="Util" scheme="http://kaizige.vip/tags/Util/"/>
+    
       <category term="KLog" scheme="http://kaizige.vip/tags/KLog/"/>
     
       <category term="Log" scheme="http://kaizige.vip/tags/Log/"/>
-    
-      <category term="Util" scheme="http://kaizige.vip/tags/Util/"/>
     
   </entry>
   

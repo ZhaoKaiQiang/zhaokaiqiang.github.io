@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://kaizige.vip/about/index.html</loc>
+    <loc>http://kaizige.vip/2016/09/16/singleton-pattern/</loc>
     
-    <lastmod>2016-09-05T12:31:40.000Z</lastmod>
+    <lastmod>2016-09-16T13:43:35.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://kaizige.vip/2016/09/05/strategy-pattern/</loc>
     
-    <lastmod>2016-09-05T12:14:37.000Z</lastmod>
+    <lastmod>2016-09-16T13:43:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://kaizige.vip/about/index.html</loc>
+    
+    <lastmod>2016-09-05T12:31:40.000Z</lastmod>
     
   </url>
   
